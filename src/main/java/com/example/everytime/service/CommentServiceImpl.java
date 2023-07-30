@@ -64,9 +64,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public boolean deleteComment(int commentId) {
-
         Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new NoSuchElementException("해당 코멘트가 없습니다. Comment Id = " + commentId));
-        return true;
+
+        if(!comment.isDeleted()){
+            comment.delete(true);
+        }
+
+        return comment.isDeleted();
     }
 
     public class CommentCreationException extends RuntimeException {

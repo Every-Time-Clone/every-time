@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,15 +21,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "posts_id")
-    private Post postId;
-
-    @ManyToOne
+    /*@ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
-    private User user; // 작성자
-    */
+    private User user;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;*/
 
     @Column(columnDefinition = "INT", nullable = false, name = "post_id")
     private int postId;
@@ -56,7 +55,6 @@ public class Comment {
     @Column(nullable = false, name = "modified_date")
     private LocalDateTime modifiedDate;
 
-    @UpdateTimestamp
     @Column(nullable = false, name = "deleted_date")
     private LocalDateTime deleteDate;
 
@@ -68,7 +66,7 @@ public class Comment {
         this.goods = goods;
     }
 
-    public void update(String contents) {
+    public void update(@NotNull String contents) {
         if(!contents.isEmpty()) {
             this.contents = contents;
         }
@@ -76,5 +74,6 @@ public class Comment {
 
     public void delete(boolean isDeleted) {
         this.isDeleted = isDeleted;
+        this.deleteDate = LocalDateTime.now();
     }
 }
