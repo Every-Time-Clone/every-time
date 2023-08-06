@@ -31,7 +31,7 @@
 - 기능 업그레이드
     - 도배금지,하나의 사용자가 1분내에 여러개의 글 혹은 댓글 올리는 경우를 방지
     - 댓글,동시에 댓글을 입력했을 경우 충돌문제 해결
-    - 금지어 기능,성적이거나 수위높은 욕설등의 문자열을 입력했을 때 게시글 혹은 댓글이 올라가지 않도록 함
+    - 금지어 기능,음란성 및 폭력성을 띄는 단어를 입력했을 때 게시글 혹은 댓글이 올라가지 않도록 함
     - 회원가입시 이메일 인증 기능
 
 ## Issue
@@ -43,7 +43,7 @@
 [Swagger UI](https://toy-project-mcirt.run.goorm.site/swagger-ui/index.html#/)
 
 ## Use cases
-
+[Wiki > Use cases](https://github.com/Every-Time-Clone/every-time/wiki/Use-cases)
 
 ## ERD
 
